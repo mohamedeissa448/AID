@@ -12,9 +12,10 @@ export class OrganizationService {
   constructor(private http: HttpClient) {
     this.form = new FormGroup({
       _id: new FormControl(),
-      Name: new FormControl(""),
+      Name: new FormControl("",[Validators.required]),
       Location: new FormControl("", [Validators.required]),
-     
+      userName:new FormControl("", [Validators.required]),
+      password:new FormControl("", [Validators.required]),
     });
   }
   initializeFormGroup() {
@@ -41,6 +42,8 @@ export class OrganizationService {
       _id: Organization._id,
       Name: Organization.Name ,
       Location: Organization.Location,
+      userName:Organization.userName,
+      password:Organization.password
     });
   }
 }

@@ -35,7 +35,7 @@ export class OrganizationsComponent  {
       }
       
     );*/
-    this.organizations = new MatTableDataSource([{Name:"n1",Location:"l2",_id:1},{Name:"n2",Location:"l2",_id:2}]);
+    this.organizations = new MatTableDataSource([{Name:"n1",Location:"l2",_id:1,userName:'user1',password:'password1'},{Name:"n2",Location:"l2",_id:2,userName:'user1',password:'password1'}]);
     this.organizations.sort = this.sort;
     this.organizations.paginator = this.paginator;
   }
