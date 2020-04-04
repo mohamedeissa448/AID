@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="  d-flex justify-content-center align-items-center row"style="height:100vh">
+    <form  class="col-md-8" #f="ngForm" (ngSubmit)="login(f.value)">
+        <div *ngIf="invalidLogedIn" class="alert alert-danger">Invalid UserName or Password</div>
+        <div class="form-group">
+          <label for="exampleInputUserName">User Name</label>
+          <input type="text" class="form-control" id="exampleInputUserName" 
+          ngModel name="userName"
+          #username="ngModel"required>
+          
+        </div>
+        <div *ngIf="username.invalid&&username.touched"class="alert alert-danger">
+            User Name is Required.
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1"
+          ngModel name="password"
+          #password="ngModel"
+          required>
+        </div>
+        <div *ngIf="password.invalid && password.touched"class="alert alert-danger">
+            Password is Required.
+        </div>
+        
+        <button type="submit" class="btn btn-primary"[disabled]="f.invalid">Submit</button>
+      </form>
+</div>
