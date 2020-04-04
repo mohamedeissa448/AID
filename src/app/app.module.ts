@@ -26,6 +26,8 @@ import { OrgFormComponent } from './organizations/org-form/org-form.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input'; 
 import { OrganizationService } from './services/organizations.service';
+import { PeopleComponent } from './people/people.component';
+import { PeopleFormComponent } from './people/people-form/people-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { OrganizationService } from './services/organizations.service';
     HomeComponent,
     NotFoundComponent,
     OrganizationsComponent,
-    OrgFormComponent
+    OrgFormComponent,
+    PeopleComponent,
+    PeopleFormComponent
   ],
   imports: [
     BrowserModule,

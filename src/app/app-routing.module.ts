@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
+import { PeopleComponent } from './people/people.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path:'organizations',
     component:OrganizationsComponent
+  },
+  {
+    path:'people',
+    component:PeopleComponent
   },
   {
     path:'**',
