@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { PeopleComponent } from './people/people.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path:'people',
     component:PeopleComponent
+  },
+  {
+    path:'file/upload',
+    component:UploadFileComponent
   },
   {
     path:'**',

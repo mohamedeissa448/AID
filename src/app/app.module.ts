@@ -28,6 +28,7 @@ import {MatInputModule} from '@angular/material/input';
 import { OrganizationService } from './services/organizations.service';
 import { PeopleComponent } from './people/people.component';
 import { PeopleFormComponent } from './people/people-form/people-form.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +38,11 @@ import { PeopleFormComponent } from './people/people-form/people-form.component'
     OrganizationsComponent,
     OrgFormComponent,
     PeopleComponent,
-    PeopleFormComponent
+    PeopleFormComponent,
+    UploadFileComponent
   ],
   imports: [
+
     BrowserModule,
     CommonModule,
     AppRoutingModule,
@@ -59,7 +62,8 @@ import { PeopleFormComponent } from './people/people-form/people-form.component'
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    
     
   ],
   providers: [OrganizationService],

@@ -1,3 +1,3 @@
 export const settings={
-    serverUrl:""
+    serverUrl:"localhost:3000"
 }
