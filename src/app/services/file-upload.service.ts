@@ -13,7 +13,8 @@ export class FileUploadService {
   postFile(file:File):Observable<boolean>{
     const endPoint=`${settings.serverUrl}/files/upload`;
     const formData:FormData=new FormData();
-    formData.append('fileKey',file,file.name);
+    formData.append('file',file,file.name);
+    console.log('form data',formData)
     return this.http.post(endPoint,formData)
     .pipe(map(()=>{return true;}))
     

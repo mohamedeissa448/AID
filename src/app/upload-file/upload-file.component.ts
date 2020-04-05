@@ -15,9 +15,7 @@ export class UploadFileComponent  {
     console.log("this.fileToUpload",this.fileToUpload)
   }
   uploadFileToActivity(){
-    console.log('here')
     this.FileUploadService.postFile(this.fileToUpload).subscribe(data=>{
-      console.log("data from serve",data)
       this.notificationService.success('File Uploaded Successfully')
     },error=>{
       alert("file didnot upload")
