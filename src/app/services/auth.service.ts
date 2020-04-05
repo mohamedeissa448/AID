@@ -18,7 +18,7 @@ export class AuthService {
   "name": "admin",
   "iat": 1516239022
   } 
-   return this.http.post(settings.serverUrl,credentials).pipe(map((response :any)=>{
+   return this.http.post(`${settings.serverUrl}/users/login`,credentials).pipe(map((response :any)=>{
       response.token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyJhZG1pbiJdLCJpZCI6IjEyMyIsIm5hbWUiOiJhZG1pbiIsImlhdCI6MTUxNjIzOTAyMn0.kAaEJz6ca2CjXmNOI1nmwmINF7bf4CPzHjYPWSjn4a0"
     if (response && response.token) {
    localStorage.setItem("token", response.token);

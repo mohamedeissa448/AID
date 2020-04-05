@@ -31,14 +31,20 @@ export class OrgFormComponent implements OnInit {
       if (this.title === "Add New Organization") {
         this.organizationsService.addOrganization(
           this.organizationsService.form.value
-        ); /*.subscribe(() => {});*/
-        this.notificationService.success(":: Added Successfully");
+        ).subscribe((response:any)=>{
+          console.log('response',response);
+          if(response.message==true)this.notificationService.success(":: Added Successfully");
+          else this.notificationService.success(":: UnExpected Error");
+        })
       } else if (this.title === "Edit Organization") {
-        //update dosing
+        //update organization
         this.organizationsService.updateOrganization(
           this.organizationsService.form.value
-        );
-        this.notificationService.success(":: Updated Successfully");
+        ).subscribe((response:any)=>{
+          console.log('response',response);
+          if(response.message==true)this.notificationService.success(":: Updated Successfully");
+          else this.notificationService.success(":: UnExpected Error");
+        })
       }
       this.organizationsService.form.reset();
       this.onClose();

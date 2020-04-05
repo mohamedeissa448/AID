@@ -22,19 +22,26 @@ export class OrganizationService {
     this.form.setValue({});
   }
   getOrganizations() {
-    return this.http.get(`${settings.serverUrl}/getOrganizations`);
+    return this.http.get(`${settings.serverUrl}/organizations/getOrganizations`);
   }
   addOrganization(newOrganization) {
     console.log("added", newOrganization);
-    return this.http.post(`${settings.serverUrl}/addOrganization`, {
-      Pregnancy_Name: newOrganization.Pregnancy_Name,
-      Pregnancy_Description: newOrganization.Pregnancy_Description
-    });
+    return this.http.post(`${settings.serverUrl}/organizations/addOrganization`, {
+      Name: newOrganization.Name,
+      Location: newOrganization.Location,
+      userName: newOrganization.userName,
+      password: newOrganization.password
+    })
   }
   updateOrganization(updatedOrganization) {
 
     console.log("updated", updatedOrganization);
-    return this.http.post(`${settings.serverUrl}/editOrganization`, {});
+    return this.http.post(`${settings.serverUrl}/organizations/${updatedOrganization._id}`, {
+      Name: updatedOrganization.Name,
+      Location: updatedOrganization.Location,
+      userName: updatedOrganization.userName,
+      password: updatedOrganization.password
+    });
   }
   popualteForm(Organization) {
     console.log("Organization", Organization);

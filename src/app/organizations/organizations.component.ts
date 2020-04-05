@@ -26,18 +26,18 @@ export class OrganizationsComponent  {
   ) {}
 
   ngOnInit() {
-    /*this.OrganizationsService.getOrganizations().subscribe(
-      (Alcohols: []) => {
+    this.initializeTable()
+  }
+  initializeTable(){
+    this.OrganizationsService.getOrganizations().subscribe(
+      (organizations: []) => {
         console.log("organizations", organizations);
         this.organizations = new MatTableDataSource(organizations);
         this.organizations.sort = this.sort;
         this.organizations.paginator = this.paginator;
       }
       
-    );*/
-    this.organizations = new MatTableDataSource([{Name:"n1",Location:"l2",_id:1,userName:'user1',password:'password1'},{Name:"n2",Location:"l2",_id:2,userName:'user1',password:'password1'}]);
-    this.organizations.sort = this.sort;
-    this.organizations.paginator = this.paginator;
+    );
   }
   onAdd() {
     this.OrganizationsService.form.reset();
@@ -46,6 +46,7 @@ export class OrganizationsComponent  {
     dialogConfig.width = "60%";
     dialogConfig.data = { title: "Add New Organization" };
     this.dialog.open(OrgFormComponent, dialogConfig);
+   
   }
   onEdit(element) {
     this.OrganizationsService.popualteForm(element);
@@ -53,8 +54,10 @@ export class OrganizationsComponent  {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     dialogConfig.data = { title: "Edit Organization" };
-
     this.dialog.open(OrgFormComponent, dialogConfig);
+    this.dialog.afterAllClosed.subscribe(()=>{
+      this.initializeTable()
+    })
   }
 
   onSearchClear() {
