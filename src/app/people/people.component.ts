@@ -65,6 +65,12 @@ export class PeopleComponent implements OnInit {
   onDelete(element) {
     if(confirm("Are you sure you want to delete human?")){
       //delete a human
+      console.log('deleted',element)
+      this.PeopleService.deleteHumanById(element._id)
+      .subscribe(()=>{
+        
+      })
+
     }
   }
 
