@@ -32,18 +32,30 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
    
-    <ng-container matColumnDef="firstName">
+    <ng-container matColumnDef="الاسم">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        firstName
+        الاسم
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ element.firstName }}
+        {{ element["الأسم"] }}
       </td>
     </ng-container>
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>lastName</th>
+    <ng-container matColumnDef="الشهره">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>الشهره</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.lastName }}
+        {{ element["الشهره"] }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="اسم الاب">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>اسم الاب</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element["اسم الاب"] }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="اسم الام وشهرتها">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>اسم الام وشهرتها</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element["اسم الام وشهرتها"] }}
       </td>
     </ng-container>
   
@@ -51,6 +63,8 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
       <td mat-cell *matCellDef="let element">
         <button mat-raised-button (click)="onEdit(element)">edit</button>
+        <button mat-raised-button (click)="onDelete(element)">Delete</button>
+
       </td>
     </ng-container>
     <ng-container matColumnDef="loading">

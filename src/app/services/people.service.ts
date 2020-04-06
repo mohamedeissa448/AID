@@ -13,8 +13,11 @@ export class PeopleService {
   constructor(private http: HttpClient) {
     this.form = new FormGroup({
       _id: new FormControl(),
-      firstName: new FormControl("",[Validators.required]),
-      lastName: new FormControl("", [Validators.required]),
+      "اسم الام وشهرتها": new FormControl("",[Validators.required]),
+      "اسم الاب": new FormControl("", [Validators.required]),
+      "الشهره": new FormControl("",[Validators.required]),
+      "الأسم": new FormControl("", [Validators.required]),
+ 
  
     });
   }
@@ -22,26 +25,31 @@ export class PeopleService {
     this.form.setValue({});
   }
   getPeople() {
-    return this.http.get(`${settings.serverUrl}/getPeople`);
+    return this.http.get(`${settings.serverUrl}/aidedPeople/getAllAidedPeople`);
   }
   addHuman(newHuman) {
     console.log("added", newHuman);
-    return this.http.post(`${settings.serverUrl}/addHuman`, {
-      firstName: newHuman.firstName,
-      lastName: newHuman.lastName
+    //newHuman contains _id,which we canot send
+    return this.http.post(`${settings.serverUrl}/aidedPeople/addHuman`, {
+      "اسم الام وشهرتها":newHuman["اسم الام وشهرتها"],
+      "اسم الاب":newHuman["اسم الاب"],
+      "الشهره": newHuman["الشهره"] ,
+      "الأسم": newHuman["الأسم"],
     });
   }
   updateHuman(updatedHuman) {
 
     console.log("updated", updatedHuman);
-    return this.http.post(`${settings.serverUrl}/editHuman`, {});
+    return this.http.post(`${settings.serverUrl}/aidedPeople/editHumanById`, updatedHuman);
   }
   popualteForm(Human) {
     console.log("Human", Human);
     this.form.setValue({
       _id: Human._id||"",
-      firstName: Human.firstName ,
-      lastName: Human.lastName,
+      "اسم الام وشهرتها":Human["اسم الام وشهرتها"],
+      "اسم الاب":Human["اسم الاب"],
+      "الشهره": Human["الشهره"] ,
+      "الأسم": Human["الأسم"],
       
     });
   }

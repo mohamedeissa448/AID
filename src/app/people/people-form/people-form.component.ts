@@ -31,19 +31,20 @@ export class PeopleFormComponent implements OnInit {
       if (this.title === "Add New Human") {
         this.peopleService.addHuman(
           this.peopleService.form.value
-        ); /*.subscribe(() => {});*/
+        ).subscribe(() => {});
         this.notificationService.success(":: Added Successfully");
       } else if (this.title === "Edit Human") {
         //update dosing
         this.peopleService.updateHuman(
           this.peopleService.form.value
-        );
+        ).subscribe(() => {});
         this.notificationService.success(":: Updated Successfully");
       }
       this.peopleService.form.reset();
       this.onClose();
     }
   }
+ 
   onClose() {
     this.peopleService.form.reset();
     this.dialogRef.close();

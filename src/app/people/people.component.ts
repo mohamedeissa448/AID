@@ -5,6 +5,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import{PeopleService}from"../services/people.service"
 import { MatTableDataSource } from '@angular/material/table';
 import { PeopleFormComponent } from './people-form/people-form.component';
+import { take } from 'rxjs/operators';
+
 @Component({
   selector: 'app-people',
   templateUrl: './people.component.html',
@@ -15,7 +17,7 @@ export class PeopleComponent implements OnInit {
   people;
   data;
   searchKey: string;
-   displayedColumns: string[] = ["firstName", "lastName", "Actions"];
+   displayedColumns: string[] = ["الاسم", "الشهره", "اسم الاب","اسم الام وشهرتها","Actions"];
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -25,18 +27,17 @@ export class PeopleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    /*this.OrganizationsService.getOrganizations().subscribe(
-      (Alcohols: []) => {
-        console.log("organizations", organizations);
-        this.organizations = new MatTableDataSource(organizations);
-        this.organizations.sort = this.sort;
-        this.organizations.paginator = this.paginator;
-      }
-      
-    );*/
-    this.people = new MatTableDataSource([{firstName:"n1",lastName:"l1"},{firstName:"n2",lastName:"l2"}]);
-    this.people.sort = this.sort;
-    this.people.paginator = this.paginator;
+    this.initializeTabe()
+  }
+  initializeTabe(){
+    this.PeopleService.getPeople().subscribe(
+      (response: any) => {
+        console.log("response", response);
+        this.people = new MatTableDataSource(response.people);
+        this.people.sort = this.sort;
+        this.people.paginator = this.paginator;
+      }  
+    );
   }
   onAdd() {
     this.PeopleService.form.reset();
@@ -45,6 +46,9 @@ export class PeopleComponent implements OnInit {
     dialogConfig.width = "60%";
     dialogConfig.data = { title: "Add New Human" };
     this.dialog.open(PeopleFormComponent, dialogConfig);
+    this.dialog.afterAllClosed.pipe(take(1)).subscribe(()=>{
+      this.initializeTabe()
+    })
   }
   onEdit(element) {
     this.PeopleService.popualteForm(element);
@@ -54,6 +58,14 @@ export class PeopleComponent implements OnInit {
     dialogConfig.data = { title: "Edit Human" };
 
     this.dialog.open(PeopleFormComponent, dialogConfig);
+    this.dialog.afterAllClosed.pipe(take(1)).subscribe(()=>{
+      this.initializeTabe()
+    })
+  }
+  onDelete(element) {
+    if(confirm("Are you sure you want to delete human?")){
+      //delete a human
+    }
   }
 
   onSearchClear() {

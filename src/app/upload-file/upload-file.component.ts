@@ -18,7 +18,8 @@ export class UploadFileComponent  {
     this.FileUploadService.postFile(this.fileToUpload).subscribe(data=>{
       this.notificationService.success('File Uploaded Successfully')
     },error=>{
-      alert("file didnot upload")
+      alert("File didnot upload");
+      console.log("error",error)
     })
   }
   
